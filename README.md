@@ -1,0 +1,2 @@
+# scontrino-generator
+scontrino-generator
