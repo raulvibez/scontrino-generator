@@ -16,6 +16,59 @@
       <option value="">-- Seleziona brand --</option>
       <option value="amazon">Amazon</option>
       <option value="apple">Apple</option>
+      <option value="acnestudios">Acnestudios</option>
+      <option value="adidas">Adidas</option>
+      <option value="arcteryx">Arcteryx</option>
+      <option value="balenciaga">Balenciaga</option>
+      <option value="bape">Bape</option>
+      <option value="breuninger">Breuninger</option>
+      <option value="brokenplanet">Brokenplanet</option>
+      <option value="burberry">Burberry</option>
+      <option value="canadagoose">Canadagoose</option>
+      <option value="cartier">Cartier</option>
+      <option value="chanel">Chanel</option>
+      <option value="chewforever">Chewforever</option>
+      <option value="chromehearts">Chromehearts</option>
+      <option value="chrono24">Chrono24</option>
+      <option value="coolblue">Coolblue</option>
+      <option value="crtz">Crtz</option>
+      <option value="culturekings">Culturekings</option>
+      <option value="denimtears">Denimtears</option>
+      <option value="dior">Dior</option>
+      <option value="dyson">Dyson</option>
+      <option value="ebayauth">Ebayauth</option>
+      <option value="end">End</option>
+      <option value="farfetch">Farfetch</option>
+      <option value="farfetchold">Farfetchold</option>
+      <option value="fightclub">Fightclub</option>
+      <option value="flannels">Flannels</option>
+      <option value="gallerydept">Gallerydept</option>
+      <option value="goat">Goat</option>
+      <option value="grailed">Grailed</option>
+      <option value="hermes">Hermes</option>
+      <option value="jdsports">Jdsports</option>
+      <option value="legitapp">Legitapp</option>
+      <option value="loropiana">Loropiana</option>
+      <option value="lv">Lv</option>
+      <option value="maisonmargiela">Maisonmargiela</option>
+      <option value="moncler">Moncler</option>
+      <option value="nike">Nike</option>
+      <option value="nosauce">Nosauce</option>
+      <option value="offwhite">Offwhite</option>
+      <option value="pandora">Pandora</option>
+      <option value="prada">Prada</option>
+      <option value="ralphlauren">Ralphlauren</option>
+      <option value="sephora">Sephora</option>
+      <option value="snkrs">Snkrs</option>
+      <option value="spider">Spider</option>
+      <option value="stockx">Stockx</option>
+      <option value="stussy">Stussy</option>
+      <option value="test">Test</option>
+      <option value="tnf">Tnf</option>
+      <option value="trapstar">Trapstar</option>
+      <option value="zalandode">Zalandode</option>
+      <option value="zalandous">Zalandous</option>
+      <option value="zara">Zara</option>
     </select>
     <input type="text" name="prodotto" placeholder="Nome prodotto" required />
     <input type="number" name="prezzo" placeholder="Prezzo" required />
@@ -30,7 +83,7 @@
       e.preventDefault();
       const form = e.target;
       const data = new FormData(form);
-      const res = await fetch("http://localhost:3001/api/scontrino", {
+      const res = await fetch("https://scontrino-generator.onrender.com/api/scontrino", {
         method: "POST",
         body: data
       });
