@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Scontrino Generator</title>
+  <style>
+    body { background: #000; color: #fff; font-family: sans-serif; padding: 2em; }
+    input, textarea, select { display: block; margin: 1em 0; padding: 0.5em; width: 300px; }
+    button { padding: 0.5em 1em; background: yellow; border: none; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Genera Scontrino</h1>
+  <form id="scontrinoForm">
+    <select name="brand" required>
+      <option value="">-- Seleziona brand --</option>
+      <option value="amazon">Amazon</option>
+      <option value="apple">Apple</option>
+    </select>
+    <input type="text" name="prodotto" placeholder="Nome prodotto" required />
+    <input type="number" name="prezzo" placeholder="Prezzo" required />
+    <textarea name="descrizione" placeholder="Descrizione"></textarea>
+    <input type="file" name="immagine" />
+    <input type="email" name="email" placeholder="Email destinatario" required />
+    <button type="submit">Invia</button>
+  </form>
+
+  <script>
+    document.getElementById("scontrinoForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const res = await fetch("http://localhost:3001/api/scontrino", {
+        method: "POST",
+        body: data
+      });
+      alert(await res.text());
+    });
+  </script>
+</body>
+</html>
