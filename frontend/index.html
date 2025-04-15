@@ -89,6 +89,21 @@
       });
       alert(await res.text());
     });
+brandSelect.addEventListener("change", async () => {
+  const brand = brandSelect.value;
+  if (!brand) return form.classList.add("hidden");
+  const res = await fetch("https://scontrino-generator.onrender.com/api/campi/" + brand);
+  const campi = await res.json();
+  fieldsDiv.innerHTML = "";
+  campi.forEach(campo => {
+    const input = document.createElement("input");
+    input.name = campo;
+    input.placeholder = campo.charAt(0).toUpperCase() + campo.slice(1);
+    input.required = true;
+    fieldsDiv.appendChild(input);
+  });
+  form.classList.remove("hidden");
+});    
   </script>
 </body>
 </html>
