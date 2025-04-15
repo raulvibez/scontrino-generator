@@ -4,9 +4,98 @@
   <meta charset="UTF-8" />
   <title>Scontrino Generator</title>
   <style>
-    body { background: #000; color: #fff; font-family: sans-serif; padding: 2em; }
-    input, textarea, select { display: block; margin: 1em 0; padding: 0.5em; width: 300px; }
-    button { padding: 0.5em 1em; background: yellow; border: none; font-weight: bold; }
+    :root {
+      --bg-color: #0d0d0d;
+      --primary: #f7c948;
+      --accent: #2d2d2d;
+      --text: #f0f0f0;
+      --radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 2em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    form {
+      background: var(--accent);
+      padding: 2em;
+      border-radius: var(--radius);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+      max-width: 500px;
+      width: 100%;
+      animation: fadeIn 0.8s ease;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1em;
+      font-size: 1.8em;
+      letter-spacing: 1px;
+    }
+
+    select, input, textarea {
+      width: 100%;
+      margin: 0.8em 0;
+      padding: 0.75em;
+      border-radius: var(--radius);
+      border: 1px solid #444;
+      background-color: #1a1a1a;
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    select:hover, input:hover, textarea:hover,
+    select:focus, input:focus, textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.9em;
+      background: linear-gradient(135deg, #f7c948, #facc15);
+      color: #000;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(247, 201, 72, 0.4);
+    }
+
+    input[type="file"] {
+      padding: 0.3em;
+      background-color: transparent;
+      color: var(--text);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
