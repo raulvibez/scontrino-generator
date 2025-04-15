@@ -40,6 +40,16 @@ app.post("/api/scontrino", upload.single("immagine"), (req, res) => {
     if (err) return res.status(500).send("Errore invio email");
     res.send("Email inviata");
   });
-});
+
 
 app.listen(3001, () => console.log("Backend in ascolto su http://localhost:3001"));
+app.get("/api/campi/:brand", (req, res) => {
+  const brand = req.params.brand;
+  const templateFile = path.join(templatesPath, brand + ".html");
+  if (!fs.existsSync(templateFile)) return res.status(404).send("Template non trovato");
+  const html = fs.readFileSync(templateFile, "utf-8");
+  const matches = [...html.matchAll(/\{(\w+?)\}/g)].map(m => m[1]);
+  const uniqueFields = [...new Set(matches)];
+  res.json(uniqueFields);
+});
+});
