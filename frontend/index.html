@@ -1,161 +1,137 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8" />
-  <title>Scontrino Generator</title>
-  <style>
-    :root {
-      --bg-color: #0d0d0d;
-      --primary: #f7c948;
-      --accent: #2d2d2d;
-      --text: #f0f0f0;
-      --radius: 12px;
-      --transition: all 0.3s ease;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background: var(--bg-color);
-      color: var(--text);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      padding: 2em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    form {
-      background: var(--accent);
-      padding: 2em;
-      border-radius: var(--radius);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
-      max-width: 500px;
-      width: 100%;
-      animation: fadeIn 0.8s ease;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 1em;
-      font-size: 1.8em;
-      letter-spacing: 1px;
-    }
-
-    select, input, textarea {
-      width: 100%;
-      margin: 0.8em 0;
-      padding: 0.75em;
-      border-radius: var(--radius);
-      border: 1px solid #444;
-      background-color: #1a1a1a;
-      color: var(--text);
-      transition: var(--transition);
-    }
-
-    select:hover, input:hover, textarea:hover,
-    select:focus, input:focus, textarea:focus {
-      border-color: var(--primary);
-      outline: none;
-    }
-
-    button {
-      width: 100%;
-      padding: 0.9em;
-      background: linear-gradient(135deg, #f7c948, #facc15);
-      color: #000;
-      border: none;
-      border-radius: var(--radius);
-      font-weight: bold;
-      font-size: 1em;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(247, 201, 72, 0.4);
-    }
-
-    input[type="file"] {
-      padding: 0.3em;
-      background-color: transparent;
-      color: var(--text);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hidden {
-      display: none;
-    }
   </style>
-</head>
-<body>
-  <form id="scontrinoForm" class="hidden">
-    <select name="brand" id="brandSelect" required>
-      <option value="">-- Seleziona brand --</option>
-      <option value="amazon">Amazon</option>
-      <option value="apple">Apple</option>
-      <!-- ...altri brand... -->
-      <option value="zara">Zara</option>
-    </select>
-
-    <div id="fieldsDiv"></div>
-
-    <input type="file" name="immagine" />
-    <input type="email" name="email" placeholder="Email destinatario" required />
-    <button type="submit">Invia</button>
-  </form>
-
-  <script>
-    const form = document.getElementById("scontrinoForm");
-    const brandSelect = document.getElementById("brandSelect");
-    const fieldsDiv = document.getElementById("fieldsDiv");
-
-    form.addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const data = new FormData(form);
-      const res = await fetch("https://scontrino-generator.onrender.com/api/scontrino", {
-        method: "POST",
-        body: data
-      });
-      alert(await res.text());
-    });
-
-    brandSelect.addEventListener("change", async () => {
-      const brand = brandSelect.value;
-      if (!brand) {
-        form.classList.add("hidden");
-        return;
-      }
-
-      const res = await fetch("https://scontrino-generator.onrender.com/api/campi/" + brand);
-      if (!res.ok) {
-        alert("Errore: template non trovato per " + brand);
-        return;
-      }
-
-      const campi = await res.json();
-      fieldsDiv.innerHTML = "";
-
-      campi.forEach(campo => {
-        const input = document.createElement("input");
-        input.name = campo;
-        input.placeholder = campo.charAt(0).toUpperCase() + campo.slice(1);
-        input.required = true;
-        fieldsDiv.appendChild(input);
-      });
-
-      form.classList.remove("hidden");
-    });
-  </script>
-</body>
-</html>
+ </head>
+ <body>
+   <form id="scontrinoForm">
+     <select name="brand" required>
+   <form id="scontrinoForm" class="hidden">
+     <select name="brand" id="brandSelect" required>
+       <option value="">-- Seleziona brand --</option>
+       <option value="amazon">Amazon</option>
+       <option value="apple">Apple</option>
+       <option value="acnestudios">Acnestudios</option>
+       <option value="adidas">Adidas</option>
+       <option value="arcteryx">Arcteryx</option>
+       <option value="balenciaga">Balenciaga</option>
+       <option value="bape">Bape</option>
+       <option value="breuninger">Breuninger</option>
+       <option value="brokenplanet">Brokenplanet</option>
+       <option value="burberry">Burberry</option>
+       <option value="canadagoose">Canadagoose</option>
+       <option value="cartier">Cartier</option>
+       <option value="chanel">Chanel</option>
+       <option value="chewforever">Chewforever</option>
+       <option value="chromehearts">Chromehearts</option>
+       <option value="chrono24">Chrono24</option>
+       <option value="coolblue">Coolblue</option>
+       <option value="crtz">Crtz</option>
+       <option value="culturekings">Culturekings</option>
+       <option value="denimtears">Denimtears</option>
+       <option value="dior">Dior</option>
+       <option value="dyson">Dyson</option>
+       <option value="ebayauth">Ebayauth</option>
+       <option value="end">End</option>
+       <option value="farfetch">Farfetch</option>
+       <option value="farfetchold">Farfetchold</option>
+       <option value="fightclub">Fightclub</option>
+       <option value="flannels">Flannels</option>
+       <option value="gallerydept">Gallerydept</option>
+       <option value="goat">Goat</option>
+       <option value="grailed">Grailed</option>
+       <option value="hermes">Hermes</option>
+       <option value="jdsports">Jdsports</option>
+       <option value="legitapp">Legitapp</option>
+       <option value="loropiana">Loropiana</option>
+       <option value="lv">Lv</option>
+       <option value="maisonmargiela">Maisonmargiela</option>
+       <option value="moncler">Moncler</option>
+       <option value="nike">Nike</option>
+       <option value="nosauce">Nosauce</option>
+       <option value="offwhite">Offwhite</option>
+       <option value="pandora">Pandora</option>
+       <option value="prada">Prada</option>
+       <option value="ralphlauren">Ralphlauren</option>
+       <option value="sephora">Sephora</option>
+       <option value="snkrs">Snkrs</option>
+       <option value="spider">Spider</option>
+       <option value="stockx">Stockx</option>
+       <option value="stussy">Stussy</option>
+       <option value="test">Test</option>
+       <option value="tnf">Tnf</option>
+       <option value="trapstar">Trapstar</option>
+       <option value="zalandode">Zalandode</option>
+       <option value="zalandous">Zalandous</option>
+       <!-- ...altri brand... -->
+       <option value="zara">Zara</option>
+     </select>
+     <input type="text" name="prodotto" placeholder="Nome prodotto" required />
+     <input type="number" name="prezzo" placeholder="Prezzo" required />
+     <textarea name="descrizione" placeholder="Descrizione"></textarea>
+ 
+     <div id="fieldsDiv"></div>
+ 
+     <input type="file" name="immagine" />
+     <input type="email" name="email" placeholder="Email destinatario" required />
+     <button type="submit">Invia</button>
+   </form>
+ 
+   <script>
+     document.getElementById("scontrinoForm").addEventListener("submit", async function(e) {
+     const form = document.getElementById("scontrinoForm");
+     const brandSelect = document.getElementById("brandSelect");
+     const fieldsDiv = document.getElementById("fieldsDiv");
+ 
+     form.addEventListener("submit", async function(e) {
+       e.preventDefault();
+       const form = e.target;
+       const data = new FormData(form);
+       const res = await fetch("https://scontrino-generator.onrender.com/api/scontrino", {
+         method: "POST",
+         body: data
+       });
+       alert(await res.text());
+     });
+ brandSelect.addEventListener("change", async () => {
+   const brand = brandSelect.value;
+   if (!brand) return form.classList.add("hidden");
+   const res = await fetch("https://scontrino-generator.onrender.com/api/campi/" + brand);
+   const campi = await res.json();
+   fieldsDiv.innerHTML = "";
+   campi.forEach(campo => {
+     const input = document.createElement("input");
+     input.name = campo;
+     input.placeholder = campo.charAt(0).toUpperCase() + campo.slice(1);
+     input.required = true;
+     fieldsDiv.appendChild(input);
+   });
+   form.classList.remove("hidden");
+ });    
+ 
+     brandSelect.addEventListener("change", async () => {
+       const brand = brandSelect.value;
+       if (!brand) {
+         form.classList.add("hidden");
+         return;
+       }
+ 
+       const res = await fetch("https://scontrino-generator.onrender.com/api/campi/" + brand);
+       if (!res.ok) {
+         alert("Errore: template non trovato per " + brand);
+         return;
+       }
+ 
+       const campi = await res.json();
+       fieldsDiv.innerHTML = "";
+ 
+       campi.forEach(campo => {
+         const input = document.createElement("input");
+         input.name = campo;
+         input.placeholder = campo.charAt(0).toUpperCase() + campo.slice(1);
+         input.required = true;
+         fieldsDiv.appendChild(input);
+       });
+ 
+       form.classList.remove("hidden");
+     });
+   </script>
+ </body>
+ </html>
